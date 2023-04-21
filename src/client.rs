@@ -11,11 +11,15 @@ pub struct Client {
 }
 
 impl Client {
-    pub async fn try_default() -> Result<Self, kube::Error> {
-        Ok(Self {
-            client: kube::Client::try_default().await?,
+    pub fn new(client: kube::Client) -> Self {
+        Self {
+            client,
             cache: Arc::new(RwLock::new(Cache::new())),
-        })
+        }
+    }
+
+    pub async fn try_default() -> Result<Self, kube::Error> {
+        Ok(Self::new(kube::Client::try_default().await?))
     }
 
     pub async fn call(

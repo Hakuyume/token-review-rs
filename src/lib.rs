@@ -1,14 +1,23 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
+mod cache;
+mod client;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+use base64::prelude::{Engine, BASE64_STANDARD_NO_PAD};
+pub use cache::Cache;
+pub use client::Client;
+pub use k8s_openapi::api::authentication::v1::{TokenReviewSpec, TokenReviewStatus, UserInfo};
+pub use kube::Error;
+use serde::Deserialize;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+fn exp(spec: &TokenReviewSpec) -> Option<i64> {
+    #[derive(Debug, Deserialize)]
+    struct Payload {
+        exp: i64,
     }
+
+    let payload = spec.token.as_ref()?.split('.').nth(1)?;
+    Some(
+        serde_json::from_slice::<Payload>(&BASE64_STANDARD_NO_PAD.decode(payload).ok()?)
+            .ok()?
+            .exp,
+    )
 }

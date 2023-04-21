@@ -9,7 +9,7 @@ edition = "2021"
 base64 = "0.21"
 chrono = "0.4"
 k8s-openapi = { version = "0.18", features = ["v1_26"] }
-kube = { version = "0.82", features = ["rustls-tls"] }
+kube = "0.82"
 ref-cast = "1"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"

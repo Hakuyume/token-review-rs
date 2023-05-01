@@ -9,7 +9,7 @@ pub use kube::Error;
 use serde::Deserialize;
 
 fn exp(spec: &TokenReviewSpec) -> Option<i64> {
-    #[derive(Debug, Deserialize)]
+    #[derive(Deserialize)]
     struct Payload {
         exp: i64,
     }

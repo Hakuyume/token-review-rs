@@ -4,7 +4,7 @@ use ref_cast::RefCast;
 use std::collections::HashMap;
 use std::hash::{Hash, Hasher};
 
-#[derive(Clone, Default)]
+#[derive(Default)]
 pub struct Cache {
     map: HashMap<Spec, TokenReviewStatus>,
 }
@@ -30,9 +30,8 @@ impl Cache {
     }
 }
 
-#[derive(RefCast)]
+#[derive(Clone, PartialEq, RefCast)]
 #[repr(transparent)]
-#[derive(Clone, PartialEq)]
 struct Spec(TokenReviewSpec);
 
 impl Eq for Spec {}

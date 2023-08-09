@@ -5,11 +5,16 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[features]
+default = ["openssl-tls"]
+openssl-tls = ["kube/openssl-tls"]
+rustls-tls = ["kube/rustls-tls"]
+
 [dependencies]
 base64 = "0.21"
 chrono = "0.4"
 k8s-openapi = { version = "0.18", features = ["v1_26"] }
-kube = "0.82"
+kube = { version = "0.85", default-features = false, features = ["client"] }
 ref-cast = "1"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"

@@ -4,7 +4,9 @@ mod client;
 use base64::prelude::{Engine, BASE64_STANDARD_NO_PAD};
 pub use cache::Cache;
 pub use client::Client;
-pub use k8s_openapi::api::authentication::v1::{TokenReviewSpec, TokenReviewStatus, UserInfo};
+pub use k8s_openapi;
+use k8s_openapi::api::authentication::v1::TokenReviewSpec;
+pub use kube;
 pub use kube::Error;
 use serde::Deserialize;
 

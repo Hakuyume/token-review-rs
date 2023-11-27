@@ -1,6 +1,6 @@
 [package]
 name = "token-review"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 description = "Kubernetes TokenReview API with cache"
 license = "MIT"
@@ -27,7 +27,7 @@ v1_28 = ["k8s-openapi/v1_28"]
 base64 = "0.21"
 chrono = "0.4"
 k8s-openapi = "0.20"
-kube = { version = "0.86", default-features = false, features = ["client"] }
+kube = { version = "0.87", default-features = false, features = ["client"] }
 ref-cast = "1"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
